@@ -2,8 +2,8 @@ package main
 
 import (
 	"exp/html"
-	"os"
 	"log"
+	"os"
 )
 
 func main() {

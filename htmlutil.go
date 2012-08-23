@@ -36,7 +36,7 @@ func (m Matcher) Find(n *html.Node) (nodes []*html.Node) {
 func InsertBefore(n *html.Node, nodes ...*html.Node) {
 	i := childIndex(n)
 	p := n.Parent
-	c := make([]*html.Node, len(p.Child) + len(nodes))
+	c := make([]*html.Node, len(p.Child)+len(nodes))
 	copy(c, p.Child[:i])
 	copy(c[i:], nodes)
 	copy(c[i+len(nodes):], p.Child[i:])
