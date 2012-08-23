@@ -56,3 +56,13 @@ func childIndex(n *html.Node) int {
 	}
 	panic("Node's Parent doesn't list it as a Child")
 }
+
+func RemoveAttr(n *html.Node, key string) {
+	for i, a := range n.Attr {
+		if a.Key == key {
+			copy(n.Attr[i:], n.Attr[i+1:])
+			n.Attr = n.Attr[:len(n.Attr)-1]
+			return
+		}
+	}
+}

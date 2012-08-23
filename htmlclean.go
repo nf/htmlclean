@@ -19,24 +19,15 @@ func main() {
 
 func collapseSpans(n *html.Node) {
 	Tag("span").Walk(n, func(n *html.Node) {
-		if len(n.Child) == 0 {
-			// empty span
-			n.Parent.Remove(n)
-		} else {
+		if len(n.Child) > 0 {
 			InsertBefore(n, n.Child...)
-			n.Parent.Remove(n)
 		}
+		n.Parent.Remove(n)
 	})
 }
 
 func cleanClasses(n *html.Node) {
 	All().Walk(n, func(n *html.Node) {
-		for i, a := range n.Attr {
-			if a.Key == "class" {
-				copy(n.Attr[i:], n.Attr[i+1:])
-				n.Attr = n.Attr[:len(n.Attr)-1]
-				return
-			}
-		}
+		RemoveAttr(n, "class")
 	})
 }
